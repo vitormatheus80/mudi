@@ -13,8 +13,6 @@ public class HomeController {
 	
 	@GetMapping("/home")
 	public String home(Model model) {
-
-
 		Pedido pedido = new Pedido();
 
 		pedido.setNomeProduto("Nintendo Switch - Azul Neon e Vermelho Neon");
