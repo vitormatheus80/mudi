@@ -1,12 +1,18 @@
 package com.curso.mudi.dto;
 
+import javax.validation.constraints.NotBlank;
+
 import com.curso.mudi.model.Pedido;
 
 public class RequisicaoPedido {
 
+	@NotBlank
     private String nomeProduto;
+	@NotBlank
     private String urlProduto;
+	@NotBlank
     private String urlImagem;
+
     private String descricao;
 
     public String getNomeProduto() {

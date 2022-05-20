@@ -5,9 +5,10 @@ import com.curso.mudi.model.Pedido;
 import com.curso.mudi.repository.PedidoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/pedido")
@@ -22,7 +23,11 @@ public class PedidoController {
     }
 
     @PostMapping("/novo")
-    public String novoPedido (RequisicaoPedido requisicaoPedido){
+    public String novoPedido (@Valid RequisicaoPedido requisicaoPedido, BindingResult result){
+
+        if(result.hasErrors()) {
+            return "pedido/formulario";
+        }
 
         Pedido pedido = requisicaoPedido.toPedido();
         pedidoRepository.save(pedido);
