@@ -1,20 +1,10 @@
-package com.curso.mudi.model;
+package com.curso.mudi.dto;
 
-import javax.persistence.*;
-import java.math.BigDecimal;
-import java.time.LocalDate;
+import com.curso.mudi.model.Pedido;
 
-@Entity
-//@Table(name = "pedido")
-public class Pedido {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class RequisicaoPedido {
 
     private String nomeProduto;
-    private BigDecimal valorNegociado;
-    private LocalDate dataDaEntrega;
     private String urlProduto;
     private String urlImagem;
     private String descricao;
@@ -25,22 +15,6 @@ public class Pedido {
 
     public void setNomeProduto(String nomeProduto) {
         this.nomeProduto = nomeProduto;
-    }
-
-    public BigDecimal getValorNegociado() {
-        return valorNegociado;
-    }
-
-    public void setValorNegociado(BigDecimal valorNegociado) {
-        this.valorNegociado = valorNegociado;
-    }
-
-    public LocalDate getDataDaEntrega() {
-        return dataDaEntrega;
-    }
-
-    public void setDataDaEntrega(LocalDate dataDaEntrega) {
-        this.dataDaEntrega = dataDaEntrega;
     }
 
     public String getUrlProduto() {
@@ -65,5 +39,14 @@ public class Pedido {
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
+    }
+
+    public Pedido toPedido() {
+        Pedido pedido = new Pedido();
+        pedido.setNomeProduto(nomeProduto);
+        pedido.setUrlProduto(urlProduto);
+        pedido.setUrlImagem(urlImagem);
+        pedido.setDescricao(descricao);
+        return pedido;
     }
 }
